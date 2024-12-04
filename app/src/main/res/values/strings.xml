@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyFarmFinance</string>
+    <string-array name="roles">
+        <item>Owner</item>
+        <item>User</item>
+    </string-array>
+</resources>

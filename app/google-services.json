@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "163451761333",
+    "project_id": "myfarmfinance",
+    "storage_bucket": "myfarmfinance.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163451761333:android:2a7547be712f0c921604fc",
+        "android_client_info": {
+          "package_name": "com.example.myfarmfinance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtbQHO-dQ1zBb2TxyffPNNaE3_81IWoUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

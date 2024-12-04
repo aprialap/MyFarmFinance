@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <!-- Judul LOGIN -->
+    <TextView
+        android:id="@+id/tvLoginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SISTEM MONITORING PENDAPATAN"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#008080"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Input untuk username -->
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="text"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/tvLoginTitle"
+        android:textColor="#008080"
+        android:backgroundTint="#008080"
+        android:padding="12dp" />
+
+    <!-- Input untuk Password -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/etUsername"
+        android:textColor="#008080"
+        android:backgroundTint="#008080"
+        android:padding="12dp" />
+
+    <!-- Tombol Login -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#008080"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/etPassword"
+        android:padding="12dp" />
+
+</RelativeLayout>

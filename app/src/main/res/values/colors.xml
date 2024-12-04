@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blueButtonPressed">#64B5F6</color> <!-- Biru Muda -->
+    <color name="blueButtonDefault">#1976D2</color> <!-- Biru Gelap -->
+    <color name="greenButtonPressed">#81C784</color> <!-- Hijau Terang -->
+    <color name="greenButtonDefault">#388E3C</color> <!-- Hijau Gelap -->
+    <color name="redButtonPressed">#E57373</color> <!-- Merah Muda -->
+    <color name="redButtonDefault">#D32F2F</color> <!-- Merah Gelap -->
+    <color name="greyButtonPressed">#B0BEC5</color> <!-- Abu-abu Terang -->
+    <color name="greyButtonDefault">#607D8B</color> <!-- Abu-abu Gelap -->
+</resources>
