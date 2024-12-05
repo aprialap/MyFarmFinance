@@ -1,6 +1,7 @@
 package com.example.myfarmfinance;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfarmfinance.models.DataPendapatan;
+import com.example.myfarmfinance.repositories.DataPendapatanRepository;
+import com.example.myfarmfinance.repositories.JenisPendapatanRepository;
+import com.example.myfarmfinance.repositories.UserRepository;
 
 import java.util.List;
 
@@ -19,10 +23,11 @@ public class PendapatanAdapter extends RecyclerView.Adapter<PendapatanAdapter.Vi
 
     private List<DataPendapatan> pendapatanList;
     private Context context;
-
-    public PendapatanAdapter(Context context, List<DataPendapatan> pendapatanList) {
+    private DataPendapatanRepository dataPendapatanRepository;
+    public PendapatanAdapter(Context context, List<DataPendapatan> pendapatanList, DataPendapatanRepository dataPendapatanRepository) {
         this.context = context;
         this.pendapatanList = pendapatanList;
+        this.dataPendapatanRepository = dataPendapatanRepository;
     }
 
     @NonNull
@@ -38,22 +43,35 @@ public class PendapatanAdapter extends RecyclerView.Adapter<PendapatanAdapter.Vi
         DataPendapatan pendapatan = pendapatanList.get(position);
         holder.tvId.setText(String.valueOf(pendapatan.getId()));
         holder.tvTanggal.setText(pendapatan.getTanggal());
-        holder.tvJenisPendapatan.setText(pendapatan.getJenisPendapatan());
-        holder.tvKeterangan.setText(pendapatan.getKeterangan());
+        holder.tvJenisPendapatan.setText(pendapatan.getJenisPendapatanNama());
+        holder.tvSumberPendapatan.setText(pendapatan.getSumberPendapatan());
         holder.tvTotal.setText(String.format("Rp %.2f", pendapatan.getTotal())); // Format amount as currency
 
         // Edit button listener
         holder.btnEdit.setOnClickListener(v -> {
-            // Handle Edit logic here
-            Toast.makeText(context, "Edit clicked for " + pendapatan.getJenisPendapatan(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, InsertDataPendapatanActivity.class);
+            intent.putExtra("id", pendapatan.getId()); // Kirim ID
+            context.startActivity(intent);
         });
 
         // Delete button listener
         holder.btnDelete.setOnClickListener(v -> {
-            // Handle Delete logic
-            Toast.makeText(context, "Delete clicked for " + pendapatan.getJenisPendapatan(), Toast.LENGTH_SHORT).show();
-            pendapatanList.remove(position); // Remove the item from the list
-            notifyItemRemoved(position); // Notify adapter about the item removal
+            // Menghapus data dari Firebase
+            dataPendapatanRepository.delete(pendapatan.getId(), new DataPendapatanRepository.OnDeletedListener() {
+                @Override
+                public void onDeleted() {
+                    // Setelah data berhasil dihapus dari Firebase, hapus dari userList
+                    pendapatanList.remove(position);
+                    notifyItemRemoved(position);
+                    Toast.makeText(context, "Data berhasil dihapus.", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    // Menangani kesalahan saat penghapusan gagal
+                    Toast.makeText(context, "Gagal menghapus data: " + errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 
@@ -64,7 +82,7 @@ public class PendapatanAdapter extends RecyclerView.Adapter<PendapatanAdapter.Vi
 
     // ViewHolder to hold references to the views in each item layout
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvId, tvTanggal, tvJenisPendapatan, tvKeterangan, tvTotal;
+        TextView tvId, tvTanggal, tvJenisPendapatan, tvSumberPendapatan, tvTotal;
         ImageButton btnEdit, btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
@@ -73,7 +91,7 @@ public class PendapatanAdapter extends RecyclerView.Adapter<PendapatanAdapter.Vi
             tvId = itemView.findViewById(R.id.tvId);
             tvTanggal = itemView.findViewById(R.id.tvTanggal);
             tvJenisPendapatan = itemView.findViewById(R.id.tvJenisPendapatan);
-            tvKeterangan = itemView.findViewById(R.id.tvKeterangan);
+            tvSumberPendapatan = itemView.findViewById(R.id.tvSumberPendapatan);
             tvTotal = itemView.findViewById(R.id.tvTotal);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);

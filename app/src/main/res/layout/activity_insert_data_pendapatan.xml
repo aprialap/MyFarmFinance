@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertJenisPendapatanActivity"
+    tools:context=".InsertDataPendapatanActivity"
     android:padding="16dp"
     android:background="@android:color/white">
 
@@ -22,13 +22,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Tambah Jenis Pendapatan"
+        android:text="Tambah Data Pendapatan"
         android:textColor="#008080"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -36,6 +37,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/etId"
@@ -52,21 +54,61 @@
         android:layout_marginTop="16dp"
         android:textColor="#008080"/>
 
-
-    <!-- Input Nama Pendapatan -->
+    <!-- Input Tanggal -->
     <EditText
-        android:id="@+id/etNamaPendapatan"
+        android:id="@+id/etTanggal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nama Pendapatan"
+        android:hint="Tanggal"
         android:backgroundTint="#008080"
-        android:inputType="text"
+        android:inputType="none"
+        android:focusable="false"
+        android:clickable="true"
         android:layout_marginBottom="16dp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:textColor="#008080"/>
+        android:textColor="#008080" />
+
+    <!-- Pilihan Jenis Pendapatan -->
+    <Spinner
+        android:id="@+id/spinnerJenisPendapatan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etTanggal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#008080"/>
+
+    <!-- Input Sumber Pendapatan -->
+    <EditText
+        android:id="@+id/etSumberPendapatan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Sumber Pendapatan"
+        android:backgroundTint="#008080"
+        android:inputType="text"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/spinnerJenisPendapatan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#008080" />
+
+    <!-- Input Total Pendapatan -->
+    <EditText
+        android:id="@+id/etTotalPendapatan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Total Pendapatan"
+        android:backgroundTint="#008080"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etSumberPendapatan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#008080" />
 
     <!-- Tombol Simpan -->
     <Button
@@ -75,7 +117,7 @@
         android:layout_height="wrap_content"
         android:text="Simpan"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/etNamaPendapatan"
+        app:layout_constraintTop_toBottomOf="@id/etTotalPendapatan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="#008080"

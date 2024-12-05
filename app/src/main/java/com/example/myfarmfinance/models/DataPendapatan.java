@@ -1,27 +1,32 @@
 package com.example.myfarmfinance.models;
 
 public class DataPendapatan {
-    private int id;
+    private String id;
     private String tanggal;
-    private String jenisPendapatan;
-    private String keterangan;
+    private String jenisPendapatanId;
+    private String jenisPendapatanNama;
+    private String sumberPendapatan;
     private double total;
 
+    public DataPendapatan() {
+    }
+
     // Constructor
-    public DataPendapatan(int id, String tanggal, String jenisPendapatan, String keterangan, double total) {
+    public DataPendapatan(String id, String tanggal, String jenisPendapatanId,String jenisPendapatanNama, String sumberPendapatan, double total) {
         this.id = id;
         this.tanggal = tanggal;
-        this.jenisPendapatan = jenisPendapatan;
-        this.keterangan = keterangan;
+        this.jenisPendapatanId = jenisPendapatanId;
+        this.jenisPendapatanNama = jenisPendapatanNama;
+        this.sumberPendapatan = sumberPendapatan;
         this.total = total;
     }
 
     // Getters and Setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -33,20 +38,29 @@ public class DataPendapatan {
         this.tanggal = tanggal;
     }
 
-    public String getJenisPendapatan() {
-        return jenisPendapatan;
+    public String getJenisPendapatanId() {
+        return jenisPendapatanId;
     }
 
-    public void setJenisPendapatan(String jenisPendapatan) {
-        this.jenisPendapatan = jenisPendapatan;
+    public void setJenisPendapatanId(String jenisPendapatanId) {
+        this.jenisPendapatanId = jenisPendapatanId;
     }
 
-    public String getKeterangan() {
-        return keterangan;
+    public String getJenisPendapatanNama() {
+        return jenisPendapatanNama;
     }
 
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
+    public void setJenisPendapatanNama(String jenisPendapatanNama) {
+        this.jenisPendapatanNama = jenisPendapatanNama;
+    }
+
+
+    public String getSumberPendapatan() {
+        return sumberPendapatan;
+    }
+
+    public void setSumberPendapatan(String sumberPendapatan) {
+        this.sumberPendapatan = sumberPendapatan;
     }
 
     public double getTotal() {
