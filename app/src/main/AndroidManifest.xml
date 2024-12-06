@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,8 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFarmFinance"
         tools:targetApi="31">
+
+        <!-- Aktivitas tanpa intent-filter -->
+        <activity
+            android:name=".LaporanPengeluaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanPendapatanActivity"
+            android:exported="false" />
         <activity
             android:name=".InsertDataPendapatanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InsertDataPengeluaranActivity"
             android:exported="false" />
         <activity
             android:name=".InsertUserActivity"
@@ -45,19 +60,23 @@
         <activity
             android:name=".DataPendapatanActivity"
             android:exported="false" />
+
+        <!-- Aktivitas Dashboard -->
         <activity
             android:name=".Dashboard"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme" />
+
+        <!-- Aktivitas utama dengan intent-filter -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>

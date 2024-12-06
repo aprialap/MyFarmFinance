@@ -70,7 +70,6 @@ public class DataPendapatanActivity extends AppCompatActivity {
     }
 
     // Method untuk mengambil data pendapatan dari Firebase
-
     private void fetchFromFirebase() {
         DataPendapatanRepository dataPendapatanRepository = new DataPendapatanRepository(this);
         dataPendapatanRepository.getList("Tanggal",new DataPendapatanRepository.OnListFetchedListener() {
@@ -85,6 +84,4 @@ public class DataPendapatanActivity extends AppCompatActivity {
             }
         });
     }
-
-//
 }

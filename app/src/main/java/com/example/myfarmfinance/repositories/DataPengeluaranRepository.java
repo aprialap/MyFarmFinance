@@ -3,7 +3,7 @@ package com.example.myfarmfinance.repositories;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.myfarmfinance.models.DataPendapatan;
+import com.example.myfarmfinance.models.DataPengeluaran;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,50 +14,49 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class DataPendapatanRepository {
+public class DataPengeluaranRepository {
     private final DatabaseReference databaseReference;
     private final Context context;
 
-    public DataPendapatanRepository(Context context) {
-        this.databaseReference = FirebaseDatabase.getInstance().getReference("data_pendapatan");
+    public DataPengeluaranRepository(Context context) {
+        this.databaseReference = FirebaseDatabase.getInstance().getReference("data_pengeluaran");
         this.context = context;
     }
 
     // Menyisipkan data baru ke Firebase
-    public void insert(DataPendapatan dataPendapatan) {
+    public void insert(DataPengeluaran dataPengeluaran) {
         String generatedId = databaseReference.push().getKey();
         if (generatedId != null) {
-            dataPendapatan.setId(generatedId);
-            databaseReference.child(generatedId).setValue(dataPendapatan)
+            dataPengeluaran.setId(generatedId);
+            databaseReference.child(generatedId).setValue(dataPengeluaran)
                     .addOnSuccessListener(aVoid ->
-                            Toast.makeText(context, "Data pendapatan berhasil disimpan!", Toast.LENGTH_SHORT).show())
+                            Toast.makeText(context, "Data pengeluaran berhasil disimpan!", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e ->
                             Toast.makeText(context, "Gagal menyimpan data: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         } else {
-            Toast.makeText(context, "Gagal membuat ID data pendapatan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Gagal membuat ID data pengeluaran", Toast.LENGTH_SHORT).show();
         }
     }
 
-    // Mengambil daftar data pendapatan, diurutkan berdasarkan tanggal (descending)
+    // Mengambil daftar data pengeluaran, diurutkan berdasarkan tanggal (descending)
     public void getList(String orderByField, OnListFetchedListener listener) {
         databaseReference.orderByChild(orderByField).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<DataPendapatan> dataPendapatanList = new ArrayList<>();
+                List<DataPengeluaran> dataPengeluaranList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    DataPendapatan dataPendapatan = snapshot.getValue(DataPendapatan.class);
-                    if (dataPendapatan != null) {
-                        dataPendapatanList.add(dataPendapatan);
+                    DataPengeluaran dataPengeluaran = snapshot.getValue(DataPengeluaran.class);
+                    if (dataPengeluaran != null) {
+                        dataPengeluaranList.add(dataPengeluaran);
                     }
                 }
 
                 // Mengurutkan berdasarkan tanggal dalam format descending
-                Collections.sort(dataPendapatanList, (o1, o2) -> {
+                Collections.sort(dataPengeluaranList, (o1, o2) -> {
                     try {
                         Date date1 = parseDate(o1.getTanggal());
                         Date date2 = parseDate(o2.getTanggal());
@@ -68,7 +67,7 @@ public class DataPendapatanRepository {
                     }
                 });
 
-                listener.onFetched(dataPendapatanList);
+                listener.onFetched(dataPengeluaranList);
             }
 
             @Override
@@ -86,9 +85,9 @@ public class DataPendapatanRepository {
     }
 
     // Memperbarui data berdasarkan ID
-    public void update(DataPendapatan dataPendapatan) {
-        if (dataPendapatan.getId() != null) {
-            databaseReference.child(dataPendapatan.getId()).setValue(dataPendapatan)
+    public void update(DataPengeluaran dataPengeluaran) {
+        if (dataPengeluaran.getId() != null) {
+            databaseReference.child(dataPengeluaran.getId()).setValue(dataPengeluaran)
                     .addOnSuccessListener(aVoid ->
                             Toast.makeText(context, "Data berhasil diperbarui!", Toast.LENGTH_SHORT).show())
                     .addOnFailureListener(e ->
@@ -106,7 +105,7 @@ public class DataPendapatanRepository {
 
     // Interface untuk callback pengambilan data
     public interface OnListFetchedListener {
-        void onFetched(List<DataPendapatan> fetched);
+        void onFetched(List<DataPengeluaran> fetched);
     }
 
     // Interface untuk callback penghapusan data

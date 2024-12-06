@@ -1,27 +1,32 @@
 package com.example.myfarmfinance.models;
 
 public class DataPengeluaran {
-    private int id;
+    private String id;
     private String tanggal;
-    private String jenisPengeluaran;
-    private String sumberPengeluaran;
-    private double total;
+    private String jenisPengeluaranId;
+    private String jenisPengeluaranNama;
+    private String keterangan;
+    private double jumlahPengeluaran;
+
+    public DataPengeluaran() {
+    }
 
     // Constructor
-    public DataPengeluaran(int id, String tanggal, String jenisPengeluaran, String sumberPengeluaran, double total) {
+    public DataPengeluaran(String id, String tanggal, String jenisPengeluaranId,String jenisPengeluaranNama, String keterangan, double jumlahPengeluaran) {
         this.id = id;
         this.tanggal = tanggal;
-        this.jenisPengeluaran = jenisPengeluaran;
-        this.sumberPengeluaran = sumberPengeluaran;
-        this.total = total;
+        this.jenisPengeluaranId = jenisPengeluaranId;
+        this.jenisPengeluaranNama = jenisPengeluaranNama;
+        this.keterangan = keterangan;
+        this.jumlahPengeluaran = jumlahPengeluaran;
     }
 
     // Getters and Setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -33,27 +38,35 @@ public class DataPengeluaran {
         this.tanggal = tanggal;
     }
 
-    public String getJenisPengeluaran() {
-        return jenisPengeluaran;
+    public String getJenisPengeluaranId() {
+        return jenisPengeluaranId;
     }
 
-    public void setJenisPengeluaran(String jenisPengeluaran) {
-        this.jenisPengeluaran = jenisPengeluaran;
+    public void setJenisPengeluaranId(String jenisPengeluaranId) {
+        this.jenisPengeluaranId = jenisPengeluaranId;
     }
 
-    public String getSumberPengeluaran() {
-        return sumberPengeluaran;
+    public String getJenisPengeluaranNama() {
+        return jenisPengeluaranNama;
     }
 
-    public void setSumberPengeluaran(String sumberPengeluaran) {
-        this.sumberPengeluaran = sumberPengeluaran;
+    public void setJenisPengeluaranNama(String jenisPengeluaranNama) {
+        this.jenisPengeluaranNama = jenisPengeluaranNama;
     }
 
-    public double getTotal() {
-        return total;
+    public String getKeterangan() {
+        return keterangan;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public double getJumlahPengeluaran() {
+        return jumlahPengeluaran;
+    }
+
+    public void setJumlahPengeluaran(double jumlahPengeluaran) {
+        this.jumlahPengeluaran = jumlahPengeluaran;
     }
 }

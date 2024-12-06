@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="Tanggal"
             android:textSize="16sp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="0dp"
             android:textColor="#008080"
             android:gravity="start"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,12 +54,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTanggal" />
 
-        <!-- Sumber Pengeluaran -->
+        <!-- Keterangan -->
         <TextView
-            android:id="@+id/tvSumberPengeluaran"
+            android:id="@+id/tvKeterangan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sumber Pengeluaran"
+            android:text="Keterangan"
             android:textSize="14sp"
             android:layout_marginTop="16dp"
             android:textColor="#008080"
@@ -67,9 +67,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvJenisPengeluaran" />
 
-        <!-- Total Pengeluaran -->
+        <!-- Jumlah Pengeluaran -->
         <TextView
-            android:id="@+id/tvTotal"
+            android:id="@+id/tvJumlahPengeluaran"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rp 0.00"
@@ -78,7 +78,7 @@
             android:gravity="start"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSumberPengeluaran" />
+            app:layout_constraintTop_toBottomOf="@id/tvKeterangan" />
 
         <!-- Edit Button -->
         <ImageButton
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_edit"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="0dp"
             android:tint="#008080"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

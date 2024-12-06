@@ -1,6 +1,7 @@
 package com.example.myfarmfinance;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myfarmfinance.models.DataPendapatan;
 import com.example.myfarmfinance.models.DataPengeluaran;
+import com.example.myfarmfinance.repositories.DataPendapatanRepository;
+import com.example.myfarmfinance.repositories.DataPengeluaranRepository;
 
 import java.util.List;
 
@@ -19,10 +23,11 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
 
     private List<DataPengeluaran> pengeluaranList;
     private Context context;
-
-    public PengeluaranAdapter(Context context, List<DataPengeluaran> pengeluaranList) {
+    private DataPengeluaranRepository dataPengeluaranRepository;
+    public PengeluaranAdapter(Context context, List<DataPengeluaran> pengeluaranList, DataPengeluaranRepository dataPengeluaranRepository) {
         this.context = context;
         this.pengeluaranList = pengeluaranList;
+        this.dataPengeluaranRepository = dataPengeluaranRepository;
     }
 
     @NonNull
@@ -38,22 +43,35 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
         DataPengeluaran pengeluaran = pengeluaranList.get(position);
         holder.tvId.setText(String.valueOf(pengeluaran.getId()));
         holder.tvTanggal.setText(pengeluaran.getTanggal());
-        holder.tvJenisPengeluaran.setText(pengeluaran.getJenisPengeluaran());
-        holder.tvSumberPengeluaran.setText(pengeluaran.getSumberPengeluaran());
-        holder.tvTotal.setText(String.format("Rp %.2f", pengeluaran.getTotal())); // Format amount as currency
+        holder.tvJenisPengeluaran.setText(pengeluaran.getJenisPengeluaranNama());
+        holder.tvKeterangan.setText(pengeluaran.getKeterangan());
+        holder.tvJumlahPengeluaran.setText(String.format("Rp %.2f", pengeluaran.getJumlahPengeluaran())); // Format amount as currency
 
         // Edit button listener
         holder.btnEdit.setOnClickListener(v -> {
-            // Handle Edit logic here
-            Toast.makeText(context, "Edit clicked for " + pengeluaran.getJenisPengeluaran(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, InsertDataPengeluaranActivity.class);
+            intent.putExtra("id", pengeluaran.getId()); // Kirim ID
+            context.startActivity(intent);
         });
 
         // Delete button listener
         holder.btnDelete.setOnClickListener(v -> {
-            // Handle Delete logic
-            Toast.makeText(context, "Delete clicked for " + pengeluaran.getJenisPengeluaran(), Toast.LENGTH_SHORT).show();
-            pengeluaranList.remove(position); // Remove the item from the list
-            notifyItemRemoved(position); // Notify adapter about the item removal
+            // Menghapus data dari Firebase
+            dataPengeluaranRepository.delete(pengeluaran.getId(), new DataPengeluaranRepository.OnDeletedListener() {
+                @Override
+                public void onDeleted() {
+                    // Setelah data berhasil dihapus dari Firebase, hapus dari userList
+                    pengeluaranList.remove(position);
+                    notifyItemRemoved(position);
+                    Toast.makeText(context, "Data berhasil dihapus.", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    // Menangani kesalahan saat penghapusan gagal
+                    Toast.makeText(context, "Gagal menghapus data: " + errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 
@@ -64,7 +82,7 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
 
     // ViewHolder to hold references to the views in each item layout
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvId, tvTanggal, tvJenisPengeluaran, tvSumberPengeluaran, tvTotal;
+        TextView tvId, tvTanggal, tvJenisPengeluaran, tvKeterangan, tvJumlahPengeluaran;
         ImageButton btnEdit, btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
@@ -73,8 +91,8 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
             tvId = itemView.findViewById(R.id.tvId);
             tvTanggal = itemView.findViewById(R.id.tvTanggal);
             tvJenisPengeluaran = itemView.findViewById(R.id.tvJenisPengeluaran);
-            tvSumberPengeluaran = itemView.findViewById(R.id.tvSumberPengeluaran);
-            tvTotal = itemView.findViewById(R.id.tvTotal);
+            tvKeterangan = itemView.findViewById(R.id.tvKeterangan);
+            tvJumlahPengeluaran = itemView.findViewById(R.id.tvJumlahPengeluaran);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
