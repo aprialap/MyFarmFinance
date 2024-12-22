@@ -45,18 +45,24 @@ public class MainActivity extends AppCompatActivity {
             // Cek kredensial login ke Firebase
             isValidLogin(username, password, new LoginCallback() {
                 @Override
-                public void onLoginSuccess() {
-                    // Arahkan ke Dashboard jika login berhasil
-                    Intent intent = new Intent(MainActivity.this, Dashboard.class);
-                    startActivity(intent);
+                public void onLoginSuccess(String role) {
+                    if ("Owner".equals(role)) {
+                        // Arahkan ke LaporanActivity jika role adalah owner
+                        Intent intent = new Intent(MainActivity.this, LaporanActivity.class);
+                        intent.putExtra("role", "Owner"); // Ganti "owner" dengan role sebenarnya
+                        startActivity(intent);
+                    } else {
+                        // Arahkan ke Dashboard jika role bukan owner
+                        Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                        startActivity(intent);
+                    }
                     finish(); // Menutup activity login
                 }
 
                 @Override
                 public void onLoginFailed(String errorMessage) {
                     // Tampilkan pesan kesalahan jika login gagal
-                    // Misalnya, menggunakan dialog atau UI lain untuk menampilkan errorMessage
-                    etPassword.setError(errorMessage); // Set error ke password
+                    etPassword.setError(errorMessage);
                 }
             });
         });
@@ -72,13 +78,14 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        // Ambil data password dari Firebase
+                        // Ambil data password dan role dari Firebase
                         String storedPassword = snapshot.child("password").getValue(String.class);
+                        String role = snapshot.child("role").getValue(String.class);
 
                         // Cek password
                         if (password.equals(storedPassword)) {
-                            // Login berhasil, panggil callback onLoginSuccess
-                            callback.onLoginSuccess();
+                            // Login berhasil, panggil callback onLoginSuccess dengan role
+                            callback.onLoginSuccess(role);
                             return; // Keluar setelah login berhasil
                         } else {
                             // Password salah, panggil callback onLoginFailed
@@ -102,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Interface callback untuk hasil login
     public interface LoginCallback {
-        void onLoginSuccess();
+        void onLoginSuccess(String role);
         void onLoginFailed(String errorMessage);
     }
 }

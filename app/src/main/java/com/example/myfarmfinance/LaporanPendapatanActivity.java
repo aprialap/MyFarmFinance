@@ -2,14 +2,11 @@ package com.example.myfarmfinance;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +30,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.TextAlignment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -103,6 +99,9 @@ public class LaporanPendapatanActivity extends AppCompatActivity {
         ).show();
     }
 
+    private interface DatePickerCallback {
+        void onDateSelected(String date);
+    }
     private void cetakPdf() {
         String startDateString = etStartDate.getText().toString();
         String endDateString = etEndDate.getText().toString();
@@ -238,11 +237,6 @@ public class LaporanPendapatanActivity extends AppCompatActivity {
         }
     }
 
-
-    private interface DatePickerCallback {
-        void onDateSelected(String date);
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -258,4 +252,6 @@ public class LaporanPendapatanActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

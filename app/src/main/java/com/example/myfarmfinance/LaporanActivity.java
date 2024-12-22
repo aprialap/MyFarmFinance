@@ -3,12 +3,9 @@ package com.example.myfarmfinance;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class LaporanActivity extends AppCompatActivity {
 
@@ -17,7 +14,19 @@ public class LaporanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laporan);
 
-        findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
+        // Ambil role dari Intent
+        String role = getIntent().getStringExtra("role");
+
+        // Referensi tombol Back
+        TextView btnBack = findViewById(R.id.btnBack);
+
+        // Sembunyikan tombol Back jika role adalah Owner
+        if ("Owner".equalsIgnoreCase(role)) {
+            btnBack.setVisibility(View.GONE);
+        }
+
+        // Set onClickListener untuk tombol Back
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LaporanActivity.this, Dashboard.class);
@@ -28,7 +37,7 @@ public class LaporanActivity extends AppCompatActivity {
         findViewById(R.id.btnLaporanPendapatan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigasi ke Master User Activity
+                // Navigasi ke Laporan Pendapatan Activity
                 Intent intent = new Intent(LaporanActivity.this, LaporanPendapatanActivity.class);
                 startActivity(intent);
             }
@@ -37,11 +46,10 @@ public class LaporanActivity extends AppCompatActivity {
         findViewById(R.id.btnLaporanPengeluaran).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigasi ke Master User Activity
+                // Navigasi ke Laporan Pengeluaran Activity
                 Intent intent = new Intent(LaporanActivity.this, LaporanPengeluaranActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 }
