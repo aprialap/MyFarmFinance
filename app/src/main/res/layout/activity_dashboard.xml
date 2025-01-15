@@ -37,12 +37,17 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_columnWeight="1"
+            android:gravity="center"
             android:text="Data Pendapatan"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
-            android:gravity="center"
             android:textStyle="bold"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/baseline_paid_48"
+            android:drawablePadding="8dp"
+        android:textSize="14sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"/>
 
         <!-- Tombol Data Pengeluaran -->
         <Button
@@ -52,12 +57,17 @@
             android:layout_row="0"
             android:layout_column="1"
             android:layout_columnWeight="1"
+            android:gravity="center"
             android:text="Data Pengeluaran"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
-            android:gravity="center"
             android:textStyle="bold"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/baseline_credit_card_48"
+            android:drawablePadding="8dp"
+        android:textSize="14sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"/>
 
         <!-- Tombol Laporan -->
         <Button
@@ -67,14 +77,19 @@
             android:layout_row="1"
             android:layout_column="0"
             android:layout_columnWeight="1"
+            android:gravity="center"
             android:text="Laporan"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
-            android:gravity="center"
             android:textStyle="bold"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/baseline_text_snippet_48"
+            android:drawablePadding="8dp"
+        android:textSize="14sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"/>
 
-        <!-- Tombol Pengeluaran -->
+        <!-- Tombol Master Data -->
         <Button
             android:id="@+id/btnMaster"
             android:layout_width="0dp"
@@ -82,12 +97,18 @@
             android:layout_row="1"
             android:layout_column="1"
             android:layout_columnWeight="1"
+            android:gravity="center"
             android:text="Master Data"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
-            android:gravity="center"
             android:textStyle="bold"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:drawableTop="@drawable/baseline_storage_48"
+            android:drawablePadding="8dp"
+        android:textSize="14sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"/> <!-- Padding to create space for the icon -->
+
     </GridLayout>
 
 </RelativeLayout>

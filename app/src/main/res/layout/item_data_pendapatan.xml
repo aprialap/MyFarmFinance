@@ -37,6 +37,7 @@
             android:layout_marginTop="0dp"
             android:textColor="#008080"
             android:gravity="start"
+            android:drawableLeft="@drawable/baseline_date_range_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvId" />
 
@@ -76,14 +77,15 @@
             android:textColor="#008080"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSumberPendapatan" />
+            app:layout_constraintTop_toBottomOf="@id/tvSumberPendapatan"
+            android:src="@drawable/baseline_delete_24" />
 
         <!-- Edit Button -->
         <ImageButton
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_edit"
+            android:src="@drawable/baseline_edit_24"
             android:layout_marginTop="0dp"
             android:tint="#008080"
             android:background="@color/white"
@@ -95,7 +97,7 @@
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_delete"
+            android:src="@drawable/baseline_delete_24"
             android:layout_marginTop="16dp"
             android:tint="#008080"
             android:background="@color/white"

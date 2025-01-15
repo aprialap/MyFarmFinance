@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -11,38 +10,81 @@
         android:id="@+id/tvLoginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SISTEM MONITORING PENDAPATAN"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#008080"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:drawableTop="@drawable/logo_edit"
+        android:fontFamily="sans-serif" /> <!-- Font bawaan Android -->
 
     <!-- Input untuk username -->
-    <EditText
-        android:id="@+id/etUsername"
+    <LinearLayout
+        android:id="@+id/usernameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
-        android:inputType="text"
-        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp"
         android:layout_below="@id/tvLoginTitle"
-        android:textColor="#008080"
-        android:backgroundTint="#008080"
-        android:padding="12dp" />
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:background="@android:drawable/edit_text">
+
+        <ImageView
+            android:id="@+id/ivUsernameIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_username"
+            android:tint="#008080"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Username"
+            android:inputType="text"
+            android:textColor="#008080"
+            android:backgroundTint="@null"
+            android:padding="12dp"
+            android:fontFamily="sans-serif" />
+
+    </LinearLayout>
 
     <!-- Input untuk Password -->
-    <EditText
-        android:id="@+id/etPassword"
+    <LinearLayout
+        android:id="@+id/passwordLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:layout_below="@id/etUsername"
-        android:textColor="#008080"
-        android:backgroundTint="#008080"
-        android:padding="12dp" />
+        android:layout_below="@id/usernameLayout"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:background="@android:drawable/edit_text">
+
+        <ImageView
+            android:id="@+id/ivPasswordIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_lock_lock"
+            android:tint="#008080"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="#008080"
+            android:backgroundTint="@null"
+            android:padding="12dp"
+            android:fontFamily="sans-serif" /> <!-- Font bawaan Android -->
+
+    </LinearLayout>
 
     <!-- Tombol Login -->
     <Button
@@ -53,7 +95,12 @@
         android:textColor="@android:color/white"
         android:backgroundTint="#008080"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/etPassword"
-        android:padding="12dp" />
+        android:layout_below="@id/passwordLayout"
+        android:padding="12dp"
+        android:fontFamily="sans-serif"
+        />
+
+    />
+
 
 </RelativeLayout>
